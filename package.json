@@ -19,7 +19,10 @@
 		"build:esm": "tsc -p tsconfig.esm.json",
 		"build:cjs": "tsc -p tsconfig.cjs.json",
 		"build": "npm run build:esm && npm run build:cjs",
-		"clean": "npx rimraf dist"
+		"clean": "npx rimraf dist",
+		"test:compile": "npm run build",
+		"test:run": "node --test dist/cjs/index.test.js",
+		"test": "npm run test:compile && npm run test:run"
 	},
 	"dependencies": {
 		"@types/node": "^24.7.2",
