@@ -1,0 +1,29 @@
+{
+	"name": "package-loader",
+	"version": "1.0.0",
+	"description": "",
+	"license": "ISC",
+	"author": "",
+	"type": "commonjs",
+	"main": "./dist/cjs/index.cjs",
+	"module": "./dist/esm/index.js",
+	"types": "./dist/esm/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/esm/index.d.ts",
+			"import": "./dist/esm/index.js",
+			"require": "./dist/cjs/index.cjs"
+		}
+	},
+	"scripts": {
+		"build:esm": "tsc -p tsconfig.esm.json",
+		"build:cjs": "tsc -p tsconfig.cjs.json",
+		"build": "npm run build:esm && npm run build:cjs",
+		"clean": "npx rimraf dist"
+	},
+	"dependencies": {
+		"@types/node": "^24.7.2",
+		"rimraf": "^6.0.1",
+		"typescript": "^5.9.3"
+	}
+}
