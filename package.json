@@ -5,14 +5,14 @@
 	"license": "ISC",
 	"author": "",
 	"type": "commonjs",
-	"main": "./dist/cjs/index.cjs",
+	"main": "./dist/cjs/index.js",
 	"module": "./dist/esm/index.js",
 	"types": "./dist/esm/index.d.ts",
 	"exports": {
 		".": {
 			"types": "./dist/esm/index.d.ts",
 			"import": "./dist/esm/index.js",
-			"require": "./dist/cjs/index.cjs"
+			"require": "./dist/cjs/index.js"
 		}
 	},
 	"scripts": {
