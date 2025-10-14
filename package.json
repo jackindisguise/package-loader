@@ -24,7 +24,7 @@
 		"test:run": "node --test dist/cjs/index.test.js",
 		"test": "npm run test:compile && npm run test:run"
 	},
-	"dependencies": {
+	"devDependencies": {
 		"@types/node": "^24.7.2",
 		"rimraf": "^6.0.1",
 		"typescript": "^5.9.3"

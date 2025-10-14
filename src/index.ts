@@ -33,7 +33,7 @@ function _loading(p: Package) {
 function _stopLoading(p: Package) {
 	if (isLoading(p)) {
 		const index = loading.indexOf(p);
-		loading.splice(index);
+		loading.splice(index, 1);
 	}
 }
 
