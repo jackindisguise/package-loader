@@ -18,8 +18,60 @@ npm install jackindisguise/package-loader
 
 ## Usage
 
-## Behavior and edge-cases
-- Cycles: if a package is in the process of loading and is requested again (via dependencies), the implementation considers that a cycle and throws an error.
+### CommonJS
+```javascript
+// packages/config.cjs
+const config = {
+	motionBlur: true,
+};
+
+const pkg = {
+	name: "config",
+	loader: async () => {
+		// read data from a savefile
+		config.motionBlur = false;
+	},
+};
+
+module.exports = {
+	config,
+	pkg,
+};
+
+
+// index.cjs
+(()=>{
+(async () => {
+	const { loadPackage } = require("package-loader");
+	const { config, pkg } = require("./packages/config.cjs");
+	const assert = require("assert");
+	await loadPackage(pkg);
+	assert(config.motionBlur === false);
+})();
+```
+
+### ESM
+```javascript
+// packages/config.mjs
+export const config = {
+	motionBlur: true,
+};
+
+export const pkg = {
+	name: "config",
+	loader: async () => {
+		// read data from a savefile
+		config.motionBlur = false;
+	},
+};
+
+// index.mjs
+import { loadPackage } from "package-loader";
+import { config, pkg } from "./packages/config.mjs";
+import assert from "assert";
+await loadPackage(pkg);
+assert(config.motionBlur === false);
+```
 
 ## Contributing
 
