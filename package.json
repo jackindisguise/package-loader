@@ -5,27 +5,29 @@
 	"license": "ISC",
 	"author": "",
 	"type": "module",
-	"main": "./dist/cjs/index.cjs",
-	"module": "./dist/esm/index.mjs",
-	"types": "./dist/esm/index.d.ts",
+	"main": "./dist/index.cjs",
+	"module": "./dist/index.mjs",
+	"types": "./dist/index.d.ts",
 	"exports": {
 		".": {
-			"types": "./dist/esm/index.d.ts",
-			"import": "./dist/esm/index.mjs",
-			"require": "./dist/cjs/index.cjs"
+			"types": "./dist/index.d.ts",
+			"import": "./dist/index.mjs",
+			"require": "./dist/index.cjs"
 		}
 	},
 	"scripts": {
-		"build:esm": "tsc -p tsconfig.esm.json",
-		"build:cjs": "tsc -p tsconfig.cjs.json",
-		"build": "npm run build:esm && npm run build:cjs",
+		"build": "tsc && npm run build:esm && npm run build:cjs",
+		"build:esm": "esbuild dist/index.js --bundle --platform=node --target=es6 --format=esm --outfile=dist/index.mjs",
+		"build:cjs": "esbuild dist/index.js --bundle --platform=node --target=node18 --format=cjs --outfile=dist/index.cjs",
+		"build:cjs-test": "esbuild dist/index.test.js --bundle --platform=node --target=node18 --format=cjs --outfile=dist/index.test.cjs",
 		"clean": "npx rimraf dist",
 		"test:compile": "npm run build",
-		"test:run": "node --test dist/cjs/index.test.cjs",
+		"test:run": "node --test dist/index.test.cjs",
 		"test": "npm run test:compile && npm run test:run"
 	},
 	"devDependencies": {
 		"@types/node": "^24.7.2",
+		"esbuild": "^0.25.11",
 		"rimraf": "^6.0.1",
 		"typescript": "^5.9.3"
 	}

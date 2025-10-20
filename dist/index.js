@@ -25,7 +25,7 @@ function _loading(p) {
 function _stopLoading(p) {
     if (isLoading(p)) {
         const index = loading.indexOf(p);
-        loading.splice(index);
+        loading.splice(index, 1);
     }
 }
 export async function loadPackage(p) {
